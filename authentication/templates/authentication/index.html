@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Mycamu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #1747ca; 
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #3dea96;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #efeb28; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Mycamu</h1>
+
+
+
+    {%  if user.is_authenticated  %}
+    <h3> Hello {{user.name}}</h3>
+    <h4>You are sucessfully logged in</h4>
+    <button><a href="/signout">Signout</a></button>
+    <button><a href="/baseapp/home">Home Page</a></button>
+
+
+    
+    {% else %}
+
+    <button><a href="/signup">Signup</a></button>
+    <button><a href="/signout">Signout</a></button>
+
+
+    {% endif %}
+    {% if messages %}
+                <ul class="messages">
+                   {% for message in messages %}
+                       <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+</body>
+</html>
